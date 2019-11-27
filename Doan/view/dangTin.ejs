@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="DoanCNPM">
+<head>
+    <style>
+		#output img{
+			height: 100px;
+			width: 100px;
+		}
+	 </style>
+<%- include('head'); %>
+</head>
+<body ng-controller="khongcogi">
+    <%- include('header'); %>
+<div class="container position-relative">
+<form style="margin-top: 10%;" action="http://localhost:3000/upload" method="Post" enctype="multipart/form-data">
+	<div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Tên sản phẩm</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="colFormLabel" name="title">
+    </div>
+	</div>
+    <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Giá</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="colFormLabel" name="price">
+    </div>
+	</div>
+    <div class="form-group row">
+  		<label for="colFormLabel" class="col-sm-2 col-form-label"><i class="fas fa-pencil-alt prefix"></i>Mô tả</label>
+  		<div class="col-sm-10">
+  			<textarea class="form-control" id="colFormLabel" rows="3" name="content"></textarea>
+  		</div>
+	</div>
+  <div class="row">
+  <div class="custom-file overflow-hidden rounded-pill mb-5">
+            <label for="fileUpload" class="file-upload btn btn-primary btn-block rounded-pill shadow"><i class="fa fa-upload mr-2"></i>Hình ảnh
+                        <input id="fileUpload" type="file" name="files" accept="image/*" onchange="preview(event)" multiple>
+                    </label>
+  </div>
+	</div>
+  <div id="output"></div>
+	<button  type="submit" class="btn btn-primary position-absolute" style="bottom: -50px; right: 15px;">Submit</button>
+	<div id="output"></div>
+</form>
+</div>
+<%- include('footer'); %>
+<script>
+  var preview = function(event) {
+    var output = document.getElementById('output');
+    var arr = event.target.files
+    for(i = 0;i < event.target.files.length;i++){
+        var img = document.createElement('img');
+        img.src = URL.createObjectURL(arr[i]);
+        output.appendChild(img);
+    }
+    // 
+    // 
+  };
+
+</script>
+</body>
+</html>
